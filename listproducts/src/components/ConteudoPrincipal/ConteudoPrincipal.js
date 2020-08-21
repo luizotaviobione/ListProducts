@@ -52,32 +52,52 @@ class ConteudoPrincipal extends Component {
     const index = this.state.arrayItens.findIndex((p) => {
       return p.id === id;
     });
-    let x = document.querySelectorAll(".input-qtd");
+    if (e.target.value === "venda") {
+      var x = document.querySelectorAll(".input-qtd");
+    } else {
+      x = document.querySelectorAll(".input-qtd-add");
+    }
+
     let estoque = parseFloat(x[index].value);
     console.log(estoque);
 
     let array = [...this.state.arrayItens];
     array.forEach((item, indexArray) => {
       if (indexArray === index) {
-        if (item.estoque >= estoque) {
-          item.estoque -= estoque;
+        if (e.target.value === "venda") {
+          if (item.estoque >= estoque) {
+            item.estoque -= estoque;
+            this.setState({
+              arrayItens: [...array],
+            });
+          } else {
+            swal(
+              "Não é possivel realizar a venda!",
+              "A quantidade de item em estoque é menor que a digitada",
+              "error"
+            );
+          }
+        } else if (e.target.value === "adicionar") {
+          console.log("entrei aqui");
+          item.estoque += estoque;
           this.setState({
             arrayItens: [...array],
           });
-        } else {
-          swal(
-            "Não é possivel realizar a venda!",
-            "A quantidade de item em estoque é menor que a digitada",
-            "error"
-          );
         }
       }
     });
-
-    console.log(array);
-
-    //this.state.arrayItens[index].valor += valor;
   };
+  deletarItem = (id, e) => {
+    const index = this.state.arrayItens.findIndex((p) => {
+      return p.id === id;
+    });
+    let array = [...this.state.arrayItens];
+    array.splice(index, 1);
+    this.setState({
+      arrayItens: [...array],
+    });
+  };
+
   render() {
     console.log(this.state.arrayItens);
     let form = null;
@@ -122,6 +142,7 @@ class ConteudoPrincipal extends Component {
                 estoque={item.estoque}
                 url={item.url}
                 funcao={this.venderItem}
+                deletarItem={this.deletarItem}
                 id={item.id}
               />
             );
