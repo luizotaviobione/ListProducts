@@ -88,13 +88,28 @@ class ConteudoPrincipal extends Component {
     });
   };
   deletarItem = (id, e) => {
-    const index = this.state.arrayItens.findIndex((p) => {
-      return p.id === id;
-    });
-    let array = [...this.state.arrayItens];
-    array.splice(index, 1);
-    this.setState({
-      arrayItens: [...array],
+    swal({
+      title: "Você tem certeza?",
+      text: "O item selecionado será removido da Lista de produtos",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        const index = this.state.arrayItens.findIndex((p) => {
+          return p.id === id;
+        });
+        let array = [...this.state.arrayItens];
+        array.splice(index, 1);
+        this.setState({
+          arrayItens: [...array],
+        });
+        swal("O item foi removido da Lista de Produtos", {
+          icon: "success",
+        });
+      } else {
+        swal("O item não foi deletado");
+      }
     });
   };
 
@@ -131,6 +146,7 @@ class ConteudoPrincipal extends Component {
         </div>
       );
     }
+    /*checar depois quando inserir banco de dados*/
     if (this.state.doneadd) {
       itensTeste = (
         <div className="caixa-itens">
@@ -160,10 +176,10 @@ class ConteudoPrincipal extends Component {
         </div>
         <div className="container">
           <div>{itensTeste}</div>
-          <div>
+          <div className="botao-adicionar-novo">
             <button onClick={this.teste}>Adicionar Novo item</button>
           </div>
-          {form}
+          <div>{form}</div>
         </div>
       </div>
     );

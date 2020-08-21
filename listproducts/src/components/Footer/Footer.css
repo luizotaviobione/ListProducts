@@ -1,0 +1,21 @@
+.footer {
+  background-color: #2a2a72;
+  display: flex;
+  justify-content: center;
+  padding: 13px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.copyright {
+  color: white;
+}
+
+.redes-sociais {
+  margin-left: 300px;
+}
+
+.redes-sociais > a {
+  margin-left: 10px;
+}
