@@ -56,6 +56,11 @@
   margin-top: 20px;
 }
 
+.filtros {
+  display: flex;
+  margin-top: 20px;
+  justify-content: flex-end;
+}
 /*fim itenss*/
 
 /*inicio formulário*/

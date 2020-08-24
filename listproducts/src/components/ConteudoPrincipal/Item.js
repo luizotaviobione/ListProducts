@@ -9,11 +9,12 @@ function Item(props) {
   }
   */
   const addDefaultSrc = (e) => {
+    /*imagem default caso o usuario não digite nenhuma imagem ou não seja encontrada*/
     e.target.src = "https://image.flaticon.com/icons/svg/679/679821.svg";
   };
 
   return (
-    <div className="teste">
+    <div className="teste" key={props.id}>
       <img
         alt="item"
         onError={addDefaultSrc}
