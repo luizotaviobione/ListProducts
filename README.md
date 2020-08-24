@@ -11,7 +11,7 @@ Para executar o projeto basca copiar os arquivos para sua máquina entrar na pas
 
 Para  iniciar a api basta entrar na pasta backend/item e digitar dotnet run. 
 
-Caso queira acessar o site, ele pode ser encontrado no seguinte link : 
+Caso queira acessar o site, ele pode ser encontrado no seguinte link :  https://listproducts.netlify.app/
 
 ### Funcionalidades
 No site você ira pôder:
